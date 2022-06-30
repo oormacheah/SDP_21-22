@@ -1,0 +1,10 @@
+asynchronous I/O refers to not performing I/O operations in a blocking manner.
+Sync IO can be very time expensive, because they depend on the hardware technology and the size of elements
+to read/write. There are 2 main strategies on async. I/O.
+1) Multi-threaded I/O consists of performing synchronous (i.e. blocking) IO operations in parallel assigning
+several threads a different portion of the file to process.
+2) asynchronous I/O is performed in UNIX systems through AIO control block structure. It allows the programmer
+to define multiple parameters of the operation that is not meant to be blocking on its own. It will define the 
+standard parameters of an IO operation (number of bytes, file descriptor, offset, etc.) and also provides
+information about how will the aio_read/write caller be notified about the completion of the operation. It is
+usually done through UNIX signals.

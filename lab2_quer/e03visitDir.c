@@ -54,7 +54,7 @@ void visitDirRecur (char *fullnameR, char *fullnameW, int level) {
     exit (1);
   }
 
-  if (S_ISDIR(statbuf.st_mode) == 0) {
+  if (S_ISDIR(statbuf.st_mode) == 0) { // if not a directory
     return;
   }
 
@@ -72,8 +72,8 @@ void visitDirRecur (char *fullnameR, char *fullnameW, int level) {
     exit (1);
   }
 
-  while ( (dirp = readdir(dp)) != NULL) {
-    nameR = malloc ((strlen(fullnameR)+strlen(dirp->d_name)+2) * sizeof(char));
+  while ( (dirp = readdir(dp)) != NULL) { // read the following entry of the directory
+    nameR = malloc ((strlen(fullnameR)+strlen(dirp->d_name)+2) * sizeof(char)); // +2 because it will have '/' and '\0'
     nameW = malloc ((strlen(fullnameW)+strlen(dirp->d_name)+2) * sizeof(char));
     // Check miising nameR && nameW != NULL
     sprintf (nameR, "%s/%s", fullnameR, dirp->d_name);
@@ -97,7 +97,7 @@ void visitDirRecur (char *fullnameR, char *fullnameW, int level) {
       /* Directory */
       if (strcmp(dirp->d_name, ".") == 0  ||
         strcmp(dirp->d_name, "..") == 0)
-        continue;
+        continue; // AVOID recurring in these subdirectories
 
       visitDirRecur (nameR, nameW, level+1);
     }

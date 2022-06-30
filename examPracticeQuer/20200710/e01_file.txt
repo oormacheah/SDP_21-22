@@ -1,0 +1,4 @@
+echo beso de sexo
+ls -laR
+wc --byte --words --lines
+find . -name "*.c" -exec grep -H "foo" \{} \;
